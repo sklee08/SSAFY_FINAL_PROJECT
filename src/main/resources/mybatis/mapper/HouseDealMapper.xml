@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.mapper.HouseDeal">
+
+	<insert id="insert">
+		insert into housedeal values(#{dong}, #{AptName}, #{code}, #{dealAmount}, 
+		#{buildYear}, #{dealYear}, #{dealMonth}, #{dealDay}, #{area}, #{floor}, 
+		#{jibun}, #{type}, #{rentMoney})
+	</insert>
+
+	<update id="update">
+	
+	</update>
+
+	<delete id="delete">
+		delete from housedeal where no=#{no}
+	</delete>
+	
+	<select id="searchByNo" resultMap="housedeal">
+		select * from housedeal where no=#{no}
+	</select>
+
+	<select id="searchByDong" resultMap="housedeal">
+		select * from housedeal 
+		where dong LIKE CONCAT('%', #{dong}, '%') limit #{pageNo}, 10
+	</select>
+	
+	
+	<select id="searchByAptName" resultMap="housedeal">
+		select * from housedeal 
+		where aptName LIKE CONCAT('%', #{aptName}, '%') limit #{pageNo}, 10
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from housedeal
+	</select>
+
+	<select id="getTotalCountByaptName" resultType="int">
+		select
+		count(*) from housedeal where aptName LIKE CONCAT('%', #{aptName}, '%')
+	</select>
+
+	<select id="getTotalCountByDong" resultType="int">
+		select
+		count(*) from housedeal where dong LIKE CONCAT('%', #{dong}, '%')
+	</select>
+
+	<!-- 전체 정보 -->
+	<select id="searchAll" resultMap="housedeal">
+		select * from housedeal limit #{pageNo} ,10
+	</select>
+	
+	
+	<resultMap type="housedeal" id="housedeal"> 
+		<result column="no" property="no" />
+		<result column="dong" property="dong" /> 
+		<result column="aptName" property="aptName" />
+		<result column="code" property="code" /> 
+		<result column="dealAmount" property="dealAmount" />
+		<result column="buildYear" property="buildYear" />
+		<result column="dealYear" property="dealYear" />
+		<result column="dealMonth" property="dealMonth" />
+		<result column="dealDay" property="dealDay" />
+		<result column="area" property="area" />
+		<result column="floor" property="floor" />
+		<result column="lat" property="lat" />
+		<result column="lng" property="lng" />
+		<result column="jibun" property="jibun" />
+		<result column="type" property="type" />
+		<result column="rentMoney" property="rentMoney" />
+		<result column="img" property="img" />
+	</resultMap>
+	
+	<!-- HouseDeal와 HousePageBean의 1:1 관계 처리 -->
+	<resultMap type="housedeal" id="HouseDetail" extends="housedeal">
+		<association property="housepagebean" column="pageNum" javaType="HousePageBean" 
+			resultMap="com.ssafy.happyhouse.mapper.HousePageBean.housepagebean"></association>
+	</resultMap>
+</mapper>

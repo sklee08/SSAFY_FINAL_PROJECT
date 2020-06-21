@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<!-- 사용할 DTO들을 예약어로 등록 -->
+		<typeAlias type="com.ssafy.happyhouse.model.dto.UserInfo" alias="userinfo"/>
+		<typeAlias type="com.ssafy.happyhouse.model.dto.HouseDeal" alias="housedeal"/>
+		<typeAlias type="com.ssafy.happyhouse.model.dto.HouseInfo" alias="houseinfo"/>
+		<typeAlias type="com.ssafy.happyhouse.model.dto.HousePageBean" alias="housepagebean"/>
+		<typeAlias type="com.ssafy.happyhouse.model.dto.QnA" alias="qna"/>
+		<typeAlias type="com.ssafy.happyhouse.model.dto.Rank" alias="rank"/>		
+		<typeAlias type="com.ssafy.happyhouse.model.dto.SidoCodeDTO" alias="sido"/>
+		<typeAlias type="com.ssafy.happyhouse.model.dto.GreenZone" alias="greenzone"/>
+		<typeAlias type="com.ssafy.happyhouse.model.dto.Emission" alias="emission"/>
+	</typeAliases>
+
+	<mappers>
+		<!-- 사용할 mapper 등록 -->
+		<mapper resource="mybatis/mapper/userMapper.xml" />
+		<mapper resource="mybatis/mapper/HouseDealMapper.xml" />
+		<mapper resource="mybatis/mapper/HouseInfoMapper.xml" />
+		<mapper resource="mybatis/mapper/HousePageBeanMapper.xml" />
+		<mapper resource="mybatis/mapper/qnaMapper.xml" />
+		<mapper resource="mybatis/mapper/rankMapper.xml" />
+		<mapper resource="mybatis/mapper/sidoMapper.xml" />
+		<mapper resource="mybatis/mapper/natureMapper.xml" />
+	</mappers>
+</configuration>

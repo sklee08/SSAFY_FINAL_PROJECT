@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.userInfo">
+
+	<insert id="insert" parameterType="userinfo">
+		insert into user_info values(#{id}, #{pw}, #{name}, #{address}, #{phone}, #{sido}, #{gugun}, #{dong})
+	</insert>
+
+	<update id="update" parameterType="userinfo">
+		update user_info set id=#{id}, pw=#{pw}, name=#{name}, address=#{address}, phone=#{phone},
+							sido=#{sido}, gugun=#{gugun}, dong=#{dong} 
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		delete from user_info where id=#{id}
+	</delete>
+
+	<select id="select" parameterType="string" resultType="userinfo">
+		select * from user_info where id=#{id}
+	</select>
+
+	<!-- 전체 회원 정보를 가져오는 태그 구성 -->
+	<select id="selectAll" resultType="userinfo">
+		select * from user_info
+	</select>
+</mapper>

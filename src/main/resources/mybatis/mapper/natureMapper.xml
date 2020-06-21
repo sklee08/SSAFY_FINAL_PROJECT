@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.mapper.Nature">
+
+   <!-- 녹지 조회 -->
+   <select id="selectGrnzn" resultMap="greenzoneBasic">
+     	SELECT * FROM greenzone
+     	WHERE dong like concat('%', #{dong}, '%')
+		ORDER BY no
+   </select>
+
+   <!-- 대기, 폐수 배출원 조회 -->
+   <select id="selectEmission" resultMap="emissionBasic">
+     	SELECT * FROM emission
+     	WHERE dong like concat(#{dong}, '%')
+		ORDER BY no
+   </select>
+   
+   	<resultMap type="greenzone" id="greenzoneBasic">
+		<result column="no" property="no" />
+		<result column="name" property="name" />
+		<result column="address" property="address" />
+		<result column="dongcode" property="dongcode" />
+		<result column="dong" property="dong" />
+		<result column="lng" property="lng" />
+		<result column="lat" property="lat" />
+		<result column="bizcode" property="bizcode" />
+	</resultMap>
+	
+    <resultMap type="emission" id="emissionBasic">
+		<result column="no" property="no" />
+		<result column="name" property="name" />
+		<result column="bizcode" property="bizcode" />
+		<result column="address" property="address" />
+		<result column="dongcode" property="dongcode" />
+		<result column="dong" property="dong" />
+	</resultMap>
+	
+</mapper>
+

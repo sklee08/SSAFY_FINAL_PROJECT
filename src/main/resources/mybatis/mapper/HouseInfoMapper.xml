@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.mapper.HouseInfo">
+
+	<insert id="insert">
+		insert into houseinfo values(#{dong}, #{AptName}, #{code}, 
+		#{buildYear}, #{dealYear}, #{jibun}, #{lat}, #{lng}, #{img})
+	</insert>
+
+	<update id="update">
+	</update>
+
+	<delete id="delete">
+	</delete>
+	
+	<select id="search" resultMap="houseinfo">
+		select * from houseinfo where
+		aptName=#{aptName} and dong=#{dong}
+		limit 1
+	</select>
+
+	<resultMap type="houseinfo" id="houseinfo">
+		<result column="dong" property="dong" />
+		<result column="aptName" property="aptName" />
+		<result column="code" property="code" />
+		<result column="buildYear" property="buildYear" />
+		<result column="dealYear" property="dealYear" />
+		<result column="jibun" property="jibun" />
+		<result column="lat" property="lat" />
+		<result column="lng" property="lng" />
+		<result column="img" property="img" />
+	</resultMap>
+
+</mapper>
